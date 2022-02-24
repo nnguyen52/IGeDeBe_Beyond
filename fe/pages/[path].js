@@ -50,7 +50,7 @@ const GamesBasedCategory = ({
       try {
         setloadingNextPaginationGames(true);
         const res = await axios.post(
-          `${process.env.REACT_APP_APIURL}/api/${
+          `${process.env.REACT_APP_APIURL_BACKEND}/api/${
             type == 'news'
               ? 'getJustReleasedGamesPagination'
               : type == 'comingSoon'
@@ -167,7 +167,7 @@ export default GamesBasedCategory;
 export async function getStaticProps({ params }) {
   try {
     const startup_backend_games = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/${
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/${
         params.path == 'news'
           ? `getJustReleasedGamesPagination`
           : params.path == `comingSoon`
