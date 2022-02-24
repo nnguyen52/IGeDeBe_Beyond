@@ -18,8 +18,9 @@ module.exports = {
   },
   experimental: { esmExternals: true },
   env: {
-    REACT_APP_APIURL:
-      process.env.NODE_ENV !== 'production' ? '' : 'https://igedebe-beyond.vercel.app',
-    REACT_APP_APIURL_BACKEND: 'https://igedebe-beyond.herokuapp.com',
+    REACT_APP_APIURL_BACKEND:
+      process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:5000'
+        : 'https://igedebe-beyond.herokuapp.com',
   },
 };

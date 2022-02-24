@@ -55,6 +55,7 @@ const Header = () => {
           />
           <Link href='/'>
             <a>
+              {process.env.REACT_APP_APIURL_BACKEND}
               IGeDeBe<sup style={{ fontSize: '1.4rem' }}>Beyond</sup>
             </a>
           </Link>
