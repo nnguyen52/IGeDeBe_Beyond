@@ -10,9 +10,9 @@ app.use(cookieParser());
 
 const gamesRoutes = require('./routes/gamesRouter');
 
-// app.get('/testing', (req, res) => {
-//   res.json({ msg: 'here' });
-// });
+app.get('/', (req, res) => {
+  res.json({ status: null });
+});
 app.use('/api', gamesRoutes);
 
 app.get('*', (req, res) => {

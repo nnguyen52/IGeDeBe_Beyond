@@ -1,3 +1,4 @@
+const { redirect } = require('next/dist/server/api-utils');
 const path = require('path');
 module.exports = {
   reactStrictMode: true,
@@ -16,4 +17,8 @@ module.exports = {
     domains: ['images.igdb.com'],
   },
   experimental: { esmExternals: true },
+  env: {
+    REACT_APP_APIURL: 'http://localhost:3000',
+    REACT_APP_APIURL_BACKEND: 'http://localhost:5000',
+  },
 };

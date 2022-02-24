@@ -39,6 +39,7 @@ const ServerCrash = () => {
           Please report the problem to the Owner as soon as you can! I am JerNgn, the Igedebe
           <sup>Beyond</sup>'s creator deeply sorry for the inconvenience. Please visit us later!
         </b>
+        <h3 style={{ color: 'red' }}></h3>
       </div>
     </div>
   );

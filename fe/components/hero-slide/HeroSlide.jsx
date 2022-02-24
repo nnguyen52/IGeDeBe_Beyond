@@ -19,7 +19,7 @@ const HeroSlide = ({ dataArray }) => {
   const [games, setGames] = useState([]);
   useEffect(() => {
     if (!dataArray) return;
-    setGames(dataArray.slice(1, 5));
+    setGames(dataArray.slice(1, 10));
   }, [dataArray]);
 
   // useEffect(() => {
@@ -138,7 +138,7 @@ const HeroSlideItem = (props) => {
           >
             {/* <Button onClick={() => hisrory.push('/movie/' + data.id)}>Watch now</Button> */}
             <OutlineButton onClick={() => setModalActive(props.data.videos)}>
-              Watch teaser
+              Watch trailer
             </OutlineButton>
           </motion.div>
         </div>
@@ -148,7 +148,7 @@ const HeroSlideItem = (props) => {
             width={264}
             height={374}
             alt={'poster'}
-            blurDataURL={onionSleeping}
+            blurDataURL={onionSleeping.src ? onionSleeping.src : onionSleeping}
             placeholder='blur'
           />
         </div>

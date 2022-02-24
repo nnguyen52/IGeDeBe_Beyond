@@ -32,8 +32,9 @@ button {
 
 .btn-outline:hover {
   box-shadow: unset;
-  color: $main-color;
-  background-color: $white;
+  color: greenyellow;
+  background-color: black;
+  border: 3px solid black;
 }
 
 .btn.small {

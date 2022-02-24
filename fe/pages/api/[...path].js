@@ -36,7 +36,7 @@ export default function handler(req, res) {
     };
     proxy.once('proxyRes', handleLoginResponse);
     proxy.web(req, res, {
-      target: 'http://localhost:5000',
+      target: `${process.env.REACT_APP_APIURL_BACKEND}`,
       changeOrigin: true,
       selfHandleResponse: true,
     });

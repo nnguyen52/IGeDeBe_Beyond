@@ -30,6 +30,10 @@
   &.shrink {
     height: $header-shrink-height;
     background-color: $body-bg;
+    @include mobile {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
   }
 
   &__wrap {

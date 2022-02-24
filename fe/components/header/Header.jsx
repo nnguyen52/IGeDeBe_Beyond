@@ -2,8 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../assets/happyBee.png';
-
+import { useRouter } from 'next/router';
 const headerNav = [
+  {
+    display: 'Search',
+    path: '/search',
+  },
   {
     display: 'News',
     path: '/news',
@@ -19,6 +23,7 @@ const headerNav = [
 ];
 
 const Header = () => {
+  const router = useRouter();
   const headerRef = useRef(null);
   useEffect(() => {
     const shrinkHeader = () => {
@@ -33,11 +38,14 @@ const Header = () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
   }, []);
+  useEffect(() => {
+    if (!router) return;
+  }, [router]);
 
   return (
     <div ref={headerRef} className='header'>
       <div className='header__wrap container'>
-        <div className='logo'>
+        <div className={`logo ${router.route == '/' ? 'linkDisabled' : null}`}>
           <Image
             src={logo}
             alt='Page logo'
@@ -47,13 +55,18 @@ const Header = () => {
           />
           <Link href='/'>
             <a>
-              IGeDeBe <sup style={{ fontSize: '1.4rem' }}> Beyond</sup>
+              IGeDeBe<sup style={{ fontSize: '1.4rem' }}>Beyond</sup>
             </a>
           </Link>
         </div>
         <ul className='header__nav'>
           {headerNav.map((e, i) => (
-            <li key={i}>
+            <li
+              key={i}
+              className={
+                '/' + router.query.path == e.path || router.route == e.path ? 'linkDisabled' : null
+              }
+            >
               <Link href={e.path}>
                 <a>{e.display}</a>
               </Link>
