@@ -167,7 +167,7 @@ export async function getStaticProps() {
       },
     };
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
     return {
       props: {
         error: 'Server error',
