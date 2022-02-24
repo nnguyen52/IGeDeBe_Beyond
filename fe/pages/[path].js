@@ -3,7 +3,7 @@ import PageHeader from '../components/page-header/PageHeader';
 import MovieGrid from '../components/movie-grid/MovieGrid';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import ServerCrash from '../components/serverCrash';
+import ServerCrash from '../components/ServerCrash';
 import { recoilState_GamesPagination_Handler } from '../recoilStates';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 const GamesBasedCategory = ({

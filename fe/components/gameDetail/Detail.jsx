@@ -3,7 +3,7 @@ import VideoList from './VideoList';
 import MovieList from '../../components/movie-list/MovieList';
 import onionBro from '../../assets/onionSleeping.png';
 import Gallery from './Gallery';
-import WebsiteEnums from '../websiteEnum';
+import WebsiteEnums from '../WebsiteEnum';
 
 const Detail = (props) => {
   const [game, setGame] = useState(null);

@@ -4,7 +4,7 @@ import HeroSlide from '../components/hero-slide/HeroSlide';
 import { OutlineButton } from '../components/button/Button';
 import MovieList from '../components/movie-list/MovieList';
 import Link from 'next/link';
-import ServerCrash from '../components/serverCrash';
+import ServerCrash from '../components/ServerCrash';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
 import {
   recoilState_StartUpGames_Handler,
