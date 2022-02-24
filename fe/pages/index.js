@@ -138,23 +138,23 @@ export default function Home({
 export async function getStaticProps() {
   try {
     const justReleasedGamesRes = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/justReleasedGames`
+      `${process.env.NEXT_PUBLIC_URL}/api/justReleasedGames`
     );
 
     const comingSoonGamesRes = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/comingSoonGames`
+      `${process.env.NEXT_PUBLIC_URL}/api/comingSoonGames`
     );
     const mostAnticipatedGamesRes = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/mostAnticipatedGames`
+      `${process.env.NEXT_PUBLIC_URL}/api/mostAnticipatedGames`
     );
     const justReleaseGamesPagination = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/getJustReleasedGamesPagination/0`
+      `${process.env.NEXT_PUBLIC_URL}/api/getJustReleasedGamesPagination/0`
     );
     const comingSoonGamesPagination = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/getJustComingSoonGamesPagination/0`
+      `${process.env.NEXT_PUBLIC_URL}/api/getJustComingSoonGamesPagination/0`
     );
     const mostAnticipatedGamesPagination = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/getMostAnticipatedGamesPagination/0`
+      `${process.env.NEXT_PUBLIC_URL}/api/getMostAnticipatedGamesPagination/0`
     );
 
     return {

@@ -36,7 +36,7 @@ export default function handler(req, res) {
     };
     proxy.once('proxyRes', handleLoginResponse);
     proxy.web(req, res, {
-      target: `${process.env.REACT_APP_APIURL_BACKEND}`,
+      target: `${process.env.NEXT_PUBLIC_URL_BACKEND}`,
       changeOrigin: true,
       selfHandleResponse: true,
     });

@@ -23,9 +23,7 @@ const GameDetail = (props) => {
     }
     const fetchGame = async (id) => {
       try {
-        const res = await axios.post(
-          `${process.env.REACT_APP_APIURL_BACKEND}/api/getGamesDetails/${id}`
-        );
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/getGamesDetails/${id}`);
         if (res.data.msg) throw Error(res.data.msg);
         return res.data;
       } catch (e) {

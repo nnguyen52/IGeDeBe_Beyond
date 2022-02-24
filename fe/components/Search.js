@@ -24,7 +24,7 @@ const Search = () => {
   const debouncedSearch = useDebounce(search, 1000);
   const fetchGames = async () => {
     const res = await axios.post(
-      `${process.env.REACT_APP_APIURL_BACKEND}/api/searchGames/${debouncedSearch}`
+      `${process.env.NEXT_PUBLIC_URL}/api/searchGames/${debouncedSearch}`
     );
     return res.data;
   };
