@@ -138,22 +138,23 @@ export default function Home({
 export async function getStaticProps() {
   try {
     const justReleasedGamesRes = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/justReleasedGames`
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/justReleasedGames`
     );
+
     const comingSoonGamesRes = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/comingSoonGames`
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/comingSoonGames`
     );
     const mostAnticipatedGamesRes = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/mostAnticipatedGames`
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/mostAnticipatedGames`
     );
     const justReleaseGamesPagination = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/getJustReleasedGamesPagination/0`
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/getJustReleasedGamesPagination/0`
     );
     const comingSoonGamesPagination = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/getJustComingSoonGamesPagination/0`
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/getJustComingSoonGamesPagination/0`
     );
     const mostAnticipatedGamesPagination = await axios.post(
-      `${process.env.REACT_APP_APIURL}/api/getMostAnticipatedGamesPagination/0`
+      `${process.env.REACT_APP_APIURL_BACKEND}/api/getMostAnticipatedGamesPagination/0`
     );
 
     return {
@@ -167,7 +168,6 @@ export async function getStaticProps() {
       },
     };
   } catch (err) {
-    console.log(err.message);
     return {
       props: {
         error: 'Server error',
