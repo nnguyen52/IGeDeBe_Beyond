@@ -4,7 +4,7 @@ import Lottie from 'react-lottie';
 const Loading = (props) => {
   const defaultOptions = {
     loop: true,
-    autoplay: true,
+    // autoplay: true,
     animationData: animationData,
     rendererSettings: {
       preserveAspectRartio: 'xMidYMid slice',
