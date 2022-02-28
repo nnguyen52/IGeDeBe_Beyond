@@ -4,21 +4,25 @@ import { useRecoilState } from 'recoil';
 import { recoilState_gameDetails_handler } from '../../recoilStates/index';
 import axios from 'axios';
 import Detail from '../../components/gameDetail/Detail';
-
+import Loading from '../../components/Loading';
+// import Loading from '../../assets';
 const GameDetail = (props) => {
   const router = useRouter();
   const [gamesInRecoil, setGameDetailsRecoilState] = useRecoilState(
     recoilState_gameDetails_handler()
   );
   const [game, setGame] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // fetch new game
   useEffect(() => {
+    setLoading(true);
     if (!router) return;
     if (!gamesInRecoil) return;
-    if (gamesInRecoil.some((each) => each.id.toString() == router.query.id.toString())) {
-      const data = gamesInRecoil.find((each) => each.id == router.query.id.toString());
+    if (gamesInRecoil.some((each) => each.id == router.query.id)) {
+      const data = gamesInRecoil.find((each) => each.id == router.query.id);
       setGame(data);
+      setLoading(false);
       return;
     }
     const fetchGame = async (id) => {
@@ -35,11 +39,13 @@ const GameDetail = (props) => {
     (async () => {
       const data = await fetchGame(router.query.id);
       setGame(data);
-      setGameDetailsRecoilState(gamesInRecoil.concat(data));
+      setGameDetailsRecoilState(data);
+      setLoading(false);
+
       return;
     })();
   }, [router, gamesInRecoil]);
-
+  if (loading) return <Loading />;
   return <Detail data={game} />;
 };
 

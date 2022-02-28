@@ -40,6 +40,7 @@ const GamesBasedCategory = ({
   const [isNextPaginationGamesAvailable, setIsNextPaginationGamesAvailable] = useState(false);
   const [loadingNextPaginationGames, setloadingNextPaginationGames] = useState(false);
   const [page, setPage] = useState(10);
+
   // pre-fetch next pagination
   useEffect(() => {
     if (!items) return;

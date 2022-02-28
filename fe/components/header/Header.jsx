@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import logo from '../../assets/happyBee.png';
 import { useRouter } from 'next/router';
+import CustomizeButton from '../customizeButton/CustomizeButton';
 const headerNav = [
   {
     display: 'Search',
@@ -61,15 +62,25 @@ const Header = () => {
         </div>
         <ul className='header__nav'>
           {headerNav.map((e, i) => (
-            <li
-              key={i}
-              className={
-                '/' + router.query.path == e.path || router.route == e.path ? 'linkDisabled' : null
-              }
-            >
-              <Link href={e.path}>
-                <a>{e.display}</a>
-              </Link>
+            // <li
+            //   key={i}
+            //   className={
+            //     '/' + router.query.path == e.path || router.route == e.path ? 'linkDisabled' : null
+            //   }
+            // >
+            //   <Link href={e.path}>
+            //     <a>{e.display}</a>
+            //   </Link>
+            // </li>
+            <li key={i}>
+              <CustomizeButton
+                active={`${
+                  '/' + router.query.path == e.path || router.route == e.path ? true : false
+                }`}
+                content={e.display}
+                routing={e.path}
+                contentSize={'1rem'}
+              />
             </li>
           ))}
         </ul>

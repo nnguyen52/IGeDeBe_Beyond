@@ -4,14 +4,15 @@ import MovieList from '../../components/movie-list/MovieList';
 import onionBro from '../../assets/onionSleeping.png';
 import Gallery from './Gallery';
 import WebsiteEnums from '../WebsiteEnum';
-
+import { recoilState_gameDetails_handler } from '../../recoilStates/index';
+import { useRecoilValue } from 'recoil';
 const Detail = (props) => {
   const [game, setGame] = useState(null);
+  console.log(game);
   useEffect(() => {
     if (!props.data) return;
     setGame(props.data);
   }, [props.data]);
-  if (game) console.log(game);
   return (
     <>
       {game && (

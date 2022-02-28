@@ -35,14 +35,14 @@ const recoilState_gameDetails = atom({
 export const recoilState_gameDetails_handler = selectorFamily({
   key: 'recoilState_gameDetails_handler',
   get:
-    (id) =>
+    () =>
     ({ get }) => {
       return get(recoilState_gameDetails);
     },
   set:
     () =>
     ({ get, set }, data) => {
-      // const response = await axios.post(``)
+      return set(recoilState_gameDetails, [...get(recoilState_gameDetails), data]);
     },
 });
 

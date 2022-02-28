@@ -11,6 +11,8 @@ import {
   recoilState_GamesPagination_Handler,
 } from '../recoilStates/index';
 import { useEffect } from 'react';
+import Loading from '../components/Loading';
+import CustomizeButton from '../components/customizeButton/CustomizeButton';
 export default function Home({
   justReleaseGames,
   comingSoonGames,
@@ -53,6 +55,7 @@ export default function Home({
   }, [mostAnticipatedGames]);
 
   // for PAGINATION
+  // for starting application
   // set data from server to recoil state (for pagination)
   useEffect(() => {
     if (!justReleaseGamesPagination) return;
@@ -75,6 +78,7 @@ export default function Home({
       return;
     return setComingSoonGamesPagination({ data: comingSoonGamesPagination, type: 'comingSoon' });
   }, [comingSoonGamesPagination, current_ComingSoonGamesPagination]);
+
   useEffect(() => {
     if (!mostAnticipatedGamesPagination) return;
     if (
@@ -92,46 +96,59 @@ export default function Home({
   return (
     <AnimatePresence exitBeforeEnter>
       {/* heroslide */}
-      <HeroSlide dataArray={justReleaseGames} />
+      {!justReleaseGames ? (
+        <div>
+          <Loading />
+        </div>
+      ) : (
+        <HeroSlide dataArray={justReleaseGames} />
+      )}
       {/* for news, coming soon, most anticipated games */}
 
       {/* News */}
-      <motion.div className='section mb-3'>
-        <div className='section__header mb-2'>
-          <h2>New Games</h2>
-          <Link href='/news'>
-            <a>
-              <OutlineButton className='small'>View more</OutlineButton>
-            </a>
-          </Link>
-        </div>
-        <MovieList dataArray={justReleaseGames} />
-      </motion.div>
 
-      <motion.div className='section mb-3'>
-        <div className='section__header mb-2'>
-          <h2>Coming Soon</h2>
-          <Link href='/comingSoon'>
-            <a>
-              <OutlineButton className='small'>View more</OutlineButton>
-            </a>
-          </Link>
-        </div>
-        <MovieList dataArray={comingSoonGames} />
-      </motion.div>
+      {!justReleaseGames ? (
+        <Loading />
+      ) : (
+        <motion.div className='section mb-3'>
+          <div className='section__header mb-2'>
+            <h2>New Games</h2>
+            <div>
+              <CustomizeButton routing={'/news'} content={'View more'} contentSize={'1rem'} />
+            </div>
+          </div>
+          <MovieList dataArray={justReleaseGames} />
+        </motion.div>
+      )}
+
+      {!comingSoonGames ? (
+        <Loading />
+      ) : (
+        <motion.div className='section mb-3'>
+          <div className='section__header mb-2'>
+            <h2>Coming Soon</h2>
+            <div>
+              <CustomizeButton routing={'/comingSoon'} content={'View more'} contentSize={'1rem'} />
+            </div>
+          </div>
+          <MovieList dataArray={comingSoonGames} />
+        </motion.div>
+      )}
       {/* Coming Soon  */}
 
-      <motion.div className='section mb-3'>
-        <div className='section__header mb-2'>
-          <h2>Greatness</h2>
-          <Link href='/greatness'>
-            <a>
-              <OutlineButton className='small'>View more</OutlineButton>
-            </a>
-          </Link>
-        </div>
-        <MovieList dataArray={mostAnticipatedGames} />
-      </motion.div>
+      {!mostAnticipatedGames ? (
+        <Loading />
+      ) : (
+        <motion.div className='section mb-3'>
+          <div className='section__header mb-2'>
+            <h2>Greatness</h2>
+            <div>
+              <CustomizeButton routing={'/greatness'} content={'View more'} contentSize={'1rem'} />
+            </div>
+          </div>
+          <MovieList dataArray={mostAnticipatedGames} />
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }

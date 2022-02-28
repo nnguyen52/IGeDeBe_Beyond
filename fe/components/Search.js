@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import Input from './input/Input';
 import MovieCard from './movie-card/MovieCard';
+import Loading from './Loading';
 export function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
@@ -19,7 +20,7 @@ const Search = () => {
   const router = useRouter();
   const [searched, setSearched] = useState(null);
   const [search, setSearch] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [results, setResults] = useState([]);
   const debouncedSearch = useDebounce(search, 1000);
   const fetchGames = async () => {
@@ -50,22 +51,37 @@ const Search = () => {
   }, [debouncedSearch]);
   return (
     <div>
-      <Input
-        type='text'
-        placeholder='Search...'
-        value={search}
-        name='search'
-        onChange={(e) => {
-          if (searched) setSearched(false);
-          setSearch(e.target.value);
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '0px 1.5rem',
         }}
-        customStyle='colored_Border'
-      />
-      {isLoading && (
-        <>
-          <h2>Loading...</h2>
-        </>
-      )}
+      >
+        <Input
+          type='text'
+          placeholder='Search...'
+          value={search}
+          name='search'
+          onChange={(e) => {
+            if (searched) setSearched(false);
+            setSearch(e.target.value);
+          }}
+          customStyle='colored_Border'
+          width={`100%`}
+        />
+        {isLoading && (
+          <Loading
+            width={`250px`}
+            height={`250px`}
+            contentWidth={'150px'}
+            contentHeight={'150px'}
+          />
+        )}
+      </div>
+
       {!isLoading && results && results.length == 0 && searched && search !== '' && (
         <>
           <h2 style={{ color: 'crimson' }}>Sorry, {search} not found.</h2>{' '}

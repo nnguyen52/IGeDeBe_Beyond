@@ -89,6 +89,9 @@ iframe {
   @include flex(center, space-between);
 }
 
+//customize button
+@import '../components/customizeButton/customizeButton.css';
+
 //////////////////////
 // import all styles for components
 @import '../components/header/header.scss';
@@ -102,9 +105,3 @@ iframe {
 @import '../components/input/input.scss';
 @import '../components/gameDetail/detail.scss';
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
-
-.linkDisabled {
-  cursor: not-allowed !important;
-  pointer-events: none !important;
-  color: orange;
-}
