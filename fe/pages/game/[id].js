@@ -5,7 +5,7 @@ import { recoilState_gameDetails_handler } from '../../recoilStates/index';
 import axios from 'axios';
 import Detail from '../../components/gameDetail/Detail';
 import Loading from '../../components/Loading';
-// import Loading from '../../assets';
+
 const GameDetail = (props) => {
   const router = useRouter();
   const [gamesInRecoil, setGameDetailsRecoilState] = useRecoilState(

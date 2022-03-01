@@ -1,5 +1,12 @@
 import { atom, selectorFamily } from 'recoil';
-import axios from 'axios';
+
+const recoilState_window_props = atom({
+  key: 'recoilState_window_props',
+  default: {
+    width: null,
+    height: null,
+  },
+});
 
 const recoilState_justReleasedGames = atom({
   key: 'recoilState_justReleasedGames_Key',
@@ -31,7 +38,19 @@ const recoilState_gameDetails = atom({
   key: 'recoilState_gameDetails',
   default: [],
 });
-
+export const recoilState_window_props_handler = selectorFamily({
+  key: 'recoilState_window_props_handler',
+  get:
+    () =>
+    ({ get }) => {
+      return get(recoilState_window_props);
+    },
+  set:
+    () =>
+    ({ get, set }, data) => {
+      return set(recoilState_window_props, data);
+    },
+});
 export const recoilState_gameDetails_handler = selectorFamily({
   key: 'recoilState_gameDetails_handler',
   get:

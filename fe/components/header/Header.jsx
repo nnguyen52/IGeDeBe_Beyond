@@ -4,6 +4,9 @@ import Image from 'next/image';
 import logo from '../../assets/happyBee.png';
 import { useRouter } from 'next/router';
 import CustomizeButton from '../customizeButton/CustomizeButton';
+import { useRecoilState } from 'recoil';
+import { recoilState_window_props_handler } from '../../recoilStates/index';
+
 const headerNav = [
   {
     display: 'Search',
@@ -26,6 +29,10 @@ const headerNav = [
 const Header = () => {
   const router = useRouter();
   const headerRef = useRef(null);
+  const [windowProps_recoil, setWindowProps_recoil] = useRecoilState(
+    recoilState_window_props_handler()
+  );
+
   useEffect(() => {
     const shrinkHeader = () => {
       if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -39,9 +46,28 @@ const Header = () => {
       window.removeEventListener('scroll', shrinkHeader);
     };
   }, []);
+
   useEffect(() => {
     if (!router) return;
   }, [router]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      function handleResize() {
+        setWindowProps_recoil({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+      window.addEventListener('resize', handleResize);
+      handleResize();
+    }
+    try {
+      return () => window.removeEventListener('resize', window);
+    } catch (e) {
+      console.log(e);
+    }
+  }, []);
 
   return (
     <div ref={headerRef} className='header'>
@@ -62,16 +88,6 @@ const Header = () => {
         </div>
         <ul className='header__nav'>
           {headerNav.map((e, i) => (
-            // <li
-            //   key={i}
-            //   className={
-            //     '/' + router.query.path == e.path || router.route == e.path ? 'linkDisabled' : null
-            //   }
-            // >
-            //   <Link href={e.path}>
-            //     <a>{e.display}</a>
-            //   </Link>
-            // </li>
             <li key={i}>
               <CustomizeButton
                 active={`${

@@ -85,7 +85,6 @@
       background-color: $body-bg;
       padding: 0 2rem;
       box-shadow: $box-shadow;
-
       @include flex(center, space-between);
 
       & > * ~ * {

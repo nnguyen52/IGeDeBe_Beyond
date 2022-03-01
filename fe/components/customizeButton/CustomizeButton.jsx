@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const CustomizeButton = ({ content, routing, contentSize, active }) => {
+const CustomizeButton = ({ content, routing, contentSize, active, mode }) => {
   return (
     <div className='custom_btn'>
       {routing ? (
