@@ -209,6 +209,6 @@ export async function getStaticPaths() {
   const paths = endPoints.map((each) => ({ params: { path: each.toString() } }));
   return {
     paths: paths,
-    fallback: false,
+    fallback: 'blocking',
   };
 }

@@ -106,7 +106,6 @@ export default function Home({
       {/* for news, coming soon, most anticipated games */}
 
       {/* News */}
-
       {!justReleaseGames ? (
         <Loading />
       ) : (

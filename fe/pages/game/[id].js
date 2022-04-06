@@ -28,9 +28,12 @@ const GameDetail = (props) => {
     const fetchGame = async (id) => {
       try {
         const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/getGamesDetails/${id}`);
+        if (res.data.msg) console.log('MESSAGE', res.data);
+
         if (res.data.msg) throw Error(res.data.msg);
         return res.data;
       } catch (e) {
+        console.log('here', e);
         setGame(null);
         router.push('/404');
         return;
@@ -41,7 +44,6 @@ const GameDetail = (props) => {
       setGame(data);
       setGameDetailsRecoilState(data);
       setLoading(false);
-
       return;
     })();
   }, [router, gamesInRecoil]);

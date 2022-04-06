@@ -90,17 +90,18 @@ const Detail = (props) => {
                   {<VideoList videos={game.videos.slice(0, 1)} />}
                 </div>
               )}
-              {(props.data.artworks || props.data.screenshots) && (
-                <Gallery
-                  data={
-                    props.data.artworks && props.data.screenshots
-                      ? props.data.screenshots.concat(props.data.artworks)
-                      : props.data.screenshots
-                      ? props.data.screenshots
-                      : props.data.artworks
-                  }
-                />
-              )}
+              {props?.data?.artworks ||
+                (props?.data?.screenshots && (
+                  <Gallery
+                    data={
+                      props?.data?.artworks && props?.data?.screenshots
+                        ? props?.data?.screenshots.concat(props?.data?.artworks)
+                        : props?.data?.screenshots
+                        ? props?.data?.screenshots
+                        : props?.data?.artworks
+                    }
+                  />
+                ))}
               <div className='section mb-3'>
                 <div className='section__header mb-2'>
                   <h2>Similar</h2>
