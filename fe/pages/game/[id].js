@@ -25,11 +25,9 @@ const GameDetail = (props) => {
       setLoading(false);
       return;
     }
-    console.log('router: ', router.query.id);
     const fetchGame = async (id) => {
       try {
         const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/getGamesDetails/${id}`);
-
         if (res.data.msg) throw Error(res.data.msg);
         return res.data;
       } catch (e) {
@@ -42,10 +40,14 @@ const GameDetail = (props) => {
     if (router.query.id)
       (async () => {
         const data = await fetchGame(router.query.id.toString());
-        setGame(data);
-        setGameDetailsRecoilState(data);
-        setLoading(false);
-        return;
+        try {
+          setGame(data);
+          setGameDetailsRecoilState(data);
+          setLoading(false);
+          return;
+        } catch (e) {
+          console.log(e);
+        }
       })();
   }, [router, gamesInRecoil]);
   if (loading) return <Loading />;

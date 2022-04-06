@@ -2,6 +2,7 @@ import Head from 'next/head';
 import '../styles/App.scss';
 import Header from '../components/header/Header';
 import { RecoilRoot } from 'recoil';
+
 function MyApp({ Component, pageProps }) {
   return (
     <>

@@ -8,7 +8,6 @@ import { recoilState_gameDetails_handler } from '../../recoilStates/index';
 import { useRecoilValue } from 'recoil';
 const Detail = (props) => {
   const [game, setGame] = useState(null);
-  console.log(game);
   useEffect(() => {
     if (!props.data) return;
     setGame(props.data);
@@ -21,13 +20,13 @@ const Detail = (props) => {
             className='banner'
             style={{
               backgroundImage:
-                game.artworks || game.screenshots || game.cover
+                game?.artworks || game?.screenshots || game?.cover
                   ? `url(https://images.igdb.com/igdb/image/upload/t_1080p/${
-                      game.artworks
-                        ? game.artworks[0].image_id
-                        : game.screenshots
-                        ? game.screenshots[0].image_id
-                        : game.cover.image_id
+                      game?.artworks
+                        ? game?.artworks[0].image_id
+                        : game?.screenshots
+                        ? game?.screenshots[0].image_id
+                        : game?.cover.image_id
                     }.jpg)`
                   : `url('${onionBro.src}')`,
             }}
@@ -37,8 +36,8 @@ const Detail = (props) => {
               <div
                 className='movie-content__poster__img'
                 style={{
-                  backgroundImage: game.cover
-                    ? `url(https://images.igdb.com/igdb/image/upload/t_1080p/${game.cover.image_id}.jpg)`
+                  backgroundImage: game?.cover
+                    ? `url(https://images.igdb.com/igdb/image/upload/t_1080p/${game?.cover?.image_id}.jpg)`
                     : `url('${onionBro.src}')`,
                 }}
               ></div>
@@ -59,8 +58,8 @@ const Detail = (props) => {
                     </span>
                   ))}
               </div>
-              <p className='overview'>{game.summary}</p>
-              {game.websites && (
+              <p className='overview'>{game?.summary}</p>
+              {game?.websites && (
                 <div
                   style={{
                     display: 'flex',
@@ -90,18 +89,17 @@ const Detail = (props) => {
                   {<VideoList videos={game.videos.slice(0, 1)} />}
                 </div>
               )}
-              {props?.data?.artworks ||
-                (props?.data?.screenshots && (
-                  <Gallery
-                    data={
-                      props?.data?.artworks && props?.data?.screenshots
-                        ? props?.data?.screenshots.concat(props?.data?.artworks)
-                        : props?.data?.screenshots
-                        ? props?.data?.screenshots
-                        : props?.data?.artworks
-                    }
-                  />
-                ))}
+              {(props?.data?.artworks?.length > 0 || props?.data?.screenshots?.length > 0) && (
+                <Gallery
+                  data={
+                    props?.data?.artworks && props?.data?.screenshots
+                      ? props?.data?.screenshots.concat(props?.data?.artworks)
+                      : props?.data?.screenshots
+                      ? props?.data?.screenshots
+                      : props?.data?.artworks
+                  }
+                />
+              )}
               <div className='section mb-3'>
                 <div className='section__header mb-2'>
                   <h2>Similar</h2>

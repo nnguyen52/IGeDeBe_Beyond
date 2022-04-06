@@ -9,7 +9,7 @@ const recoilState_window_props = atom({
 });
 
 const recoilState_justReleasedGames = atom({
-  key: 'recoilState_justReleasedGames_Key',
+  key: 'recoilState_justReleasedGames_Key1',
   default: [],
 });
 const recoilState_comingSoondGames = atom({
