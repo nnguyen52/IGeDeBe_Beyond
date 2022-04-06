@@ -25,27 +25,28 @@ const GameDetail = (props) => {
       setLoading(false);
       return;
     }
+    console.log('router: ', router.query.id);
     const fetchGame = async (id) => {
       try {
         const res = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/getGamesDetails/${id}`);
-        if (res.data.msg) console.log('MESSAGE', res.data);
 
         if (res.data.msg) throw Error(res.data.msg);
         return res.data;
       } catch (e) {
-        console.log('here', e);
         setGame(null);
+        console.log('fetchGame func failed: ', e);
         router.push('/404');
         return;
       }
     };
-    (async () => {
-      const data = await fetchGame(router.query.id);
-      setGame(data);
-      setGameDetailsRecoilState(data);
-      setLoading(false);
-      return;
-    })();
+    if (router.query.id)
+      (async () => {
+        const data = await fetchGame(router.query.id.toString());
+        setGame(data);
+        setGameDetailsRecoilState(data);
+        setLoading(false);
+        return;
+      })();
   }, [router, gamesInRecoil]);
   if (loading) return <Loading />;
   return <Detail data={game} />;
